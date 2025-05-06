@@ -4,4 +4,16 @@
     height: 100%;
     background-color: cadetblue;
     border-radius: 20px;
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: flex-start; /* Вертикальное выравнивание */
+    overflow: hidden;
+
+}
+
+.content img {
+    width: 97%;
+    height: 50%;
+    border-radius: 20px;
+    margin-top: 2vh;
+    overflow: hidden;
 }

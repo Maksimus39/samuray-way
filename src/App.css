@@ -8,7 +8,6 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(136, 165, 215, 0.43);
-    border: 1px solid red;
     gap: 1vh
 }
 
@@ -19,6 +18,5 @@
     height: 76vh;
     flex-direction: row;
     border-radius: 20px;
-    border: 1px solid green;
     gap: 1vh;
 }
