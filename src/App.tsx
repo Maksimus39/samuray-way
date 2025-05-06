@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./header/Header";
-import {Footer} from "./footer/Footer";
-import {Navbar} from "./navbar/Navbar";
-import {Content} from "./content/Content";
+import {Header} from "./components/header/Header";
+import {Footer} from "./components/footer/Footer";
+import {Navbar} from "./components/navbar/Navbar";
+import {Profile} from "./components/content/Profile";
 
 export const App = () => {
     return (
@@ -11,7 +11,7 @@ export const App = () => {
             <Header/>
             <div className={"App-wrapper-content"}>
                 <Navbar/>
-                <Content/>
+                <Profile/>
             </div>
             <Footer/>
         </div>

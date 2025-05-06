@@ -1,7 +1,7 @@
 .list {
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 8vw;
     min-height: 100%;
     border-radius: 20px;
     background-color: aqua;
