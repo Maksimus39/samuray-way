@@ -3,7 +3,7 @@ import './App.css';
 import {Header} from "./components/header/Header";
 import {Footer} from "./components/footer/Footer";
 import {Navbar} from "./components/navbar/Navbar";
-import {Profile} from "./components/content/Profile";
+import {Profile} from "./components/profile/Profile";
 
 export const App = () => {
     return (
