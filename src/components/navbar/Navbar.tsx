@@ -12,6 +12,5 @@ export const Navbar = () => {
                 <li>Settings</li>
             </ul>
         </div>
-
     );
 };
