@@ -11,6 +11,7 @@ export const Profile = () => {
                 alt="img"/>
             <div>
                 <div>
+                    <div>Ava + description</div>
                     <input type="text"/>
                     <button>Add Post</button>
                 </div>

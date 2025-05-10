@@ -5,10 +5,7 @@ import {Posts} from "./posts/Posts";
 export const MyPosts = () => {
     return (
         <div className={styles.section}>
-            <div>
-                Ava + description
-                <div><Posts/></div>
-            </div>
+            <Posts likes={10}/>
         </div>
     );
 };
