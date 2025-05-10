@@ -5,7 +5,7 @@ import {Posts} from "./posts/Posts";
 export const MyPosts = () => {
     return (
         <div className={styles.section}>
-            <Posts likes={10}/>
+            <Posts likes={10} message={`Hi,how are you?`}/>
         </div>
     );
 };
