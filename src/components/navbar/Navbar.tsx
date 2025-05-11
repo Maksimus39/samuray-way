@@ -4,13 +4,11 @@ import styles from './Navbar.module.css'
 export const Navbar = () => {
     return (
         <div className={styles.list}>
-            <ul>
-                <li>Profile</li>
-                <li>Messages</li>
-                <li>News</li>
-                <li>Music</li>
-                <li>Settings</li>
-            </ul>
+            <a href="/profile">Profile</a>
+            <a href="/dialogs">Messages</a>
+            <a href="/news">News</a>
+            <a href="/music">Music</a>
+            <a href="/settings">Settings</a>
         </div>
     );
 };
