@@ -17,8 +17,8 @@ export const App = () => {
                 <Header/>
                 <div className={"App-wrapper-content"}>
                     <Navbar/>
-                    <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/profile" component={Profile}/>
+                    <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
