@@ -10,6 +10,7 @@
     justify-content: center;
 }
 
-a {
+.item a {
     text-decoration: none;
+    color: #6e20e3;
 }
