@@ -1,8 +1,9 @@
 .foot {
     display: flex;
-    width: 90vw;
+    width: 100vw;
+    max-width: min(1200px, 90vw);
     flex-grow: 1;
     border-radius: 20px;
-    background-color: cornflowerblue;
+    background-color: #2d2d2d;
     margin: 0 auto 1vh;
 }

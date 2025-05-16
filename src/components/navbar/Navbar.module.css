@@ -4,13 +4,17 @@
     width: 8vw;
     min-height: 100%;
     border-radius: 20px;
-    background-color: aqua;
-
+    background: linear-gradient(180deg, #f1eadb, #e8e8f8);
     align-items: center;
     justify-content: center;
 }
 
 .item a {
     text-decoration: none;
-    color: #6e20e3;
+    color: #5a5aad; /* Глубокий сиреневый */
+}
+
+.item a:hover {
+    color: #9d9df2; /* Светлее при наведении */
+    background-color: rgba(122, 122, 230, 0.1); /* Лёгкий фон */
 }
