@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "../Profile.module.css";
 import {Posts} from "./posts/Posts";
+import styles from "./MyPosts.module.css"
 
 export const MyPosts = () => {
 
@@ -16,8 +16,11 @@ export const MyPosts = () => {
                 <input type="text"/>
                 <button>Add Post</button>
             </div>
+
             {postData.map(p=>{
-                return <Posts id={p.id} likesCount={p.likesCount} message={p.message}/>
+                return <Posts id={p.id}
+                              likesCount={p.likesCount}
+                              message={p.message}/>
             })}
         </div>
     );

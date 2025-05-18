@@ -1,0 +1,14 @@
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.posts img {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vh;
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+}
