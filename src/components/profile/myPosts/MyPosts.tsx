@@ -16,7 +16,9 @@ export const MyPosts = () => {
                 <input type="text"/>
                 <button>Add Post</button>
             </div>
-            <Posts id={postData[0].id} likesCount={postData[0].likesCount} message={postData[0].message}/>
+            {postData.map(p=>{
+                return <Posts id={p.id} likesCount={p.likesCount} message={p.message}/>
+            })}
         </div>
     );
 };
