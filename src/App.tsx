@@ -9,13 +9,11 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {DialogsDataType, MessageDataType, PostDataType} from "./index";
+import {StateType} from "./components/redux/state";
 
 
 type AppPropsType = {
-    dialogData: DialogsDataType[]
-    messageData: MessageDataType[]
-    postData: PostDataType[]
+    state: StateType
 }
 export const App = (props: AppPropsType) => {
     return (
@@ -24,9 +22,8 @@ export const App = (props: AppPropsType) => {
                 <Header/>
                 <div className={"App-wrapper-content"}>
                     <Navbar/>
-                    <Route path="/profile" render={() => <Profile postData={props.postData}/>}/>
-                    <Route path="/dialogs" render={() => <Dialogs dialogData={props.dialogData}
-                                                                  messageData={props.messageData}/>}/>
+                    <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage}/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
