@@ -5,7 +5,7 @@ import {Footer} from "./components/footer/Footer";
 import {Navbar} from "./components/navbar/Navbar";
 import {Profile} from "./components/profile/Profile";
 import {Dialogs} from "./components/dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
@@ -17,7 +17,6 @@ type AppPropsType = {
 }
 export const App = (props: AppPropsType) => {
     return (
-        <BrowserRouter>
             <div className={"App-wrapper"}>
                 <Header/>
                 <div className={"App-wrapper-content"}>
@@ -30,6 +29,5 @@ export const App = (props: AppPropsType) => {
                 </div>
                 <Footer/>
             </div>
-        </BrowserRouter>
     );
 }

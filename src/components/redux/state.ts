@@ -1,6 +1,13 @@
+import maksim from "./../../assets/images/DSCF1032_1.webp"
+import larisa from "./../../assets/images/SDC11937_1.webp"
+import andrey from "./../../assets/images/20210313_225449.jpg"
+import bogdan from "./../../assets/images/20210228_201100.webp"
+
+
 export type DialogsDataType = {
     id: number
     name: string
+    img: string
 }
 export type MessageDataType = {
     id: number
@@ -31,10 +38,10 @@ export const state: StateType = {
     },
     dialogsPage: {
         dialogData: [
-            {id: 1, name: "Maksim"},
-            {id: 2, name: "Larisa"},
-            {id: 3, name: "Andrey"},
-            {id: 4, name: "Bogdan"}
+            {id: 1, name: "Maksim", img: maksim},
+            {id: 2, name: "Larisa", img: larisa},
+            {id: 3, name: "Andrey", img: andrey},
+            {id: 4, name: "Bogdan", img: bogdan}
         ],
         messageData: [
             {id: 1, message: 'Я горжусь вами, мои дорогие, всегда будьте счастливы и заботьтесь друг о друге.'},
