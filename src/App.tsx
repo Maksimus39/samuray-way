@@ -9,13 +9,15 @@ import {Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {StateType, updateNewPostText} from "./components/redux/state";
+import {addMessage, StateType, updateNewMessagePost, updateNewPostText} from "./components/redux/state";
 
 
 type AppPropsType = {
     state: StateType
     addPost: () => void
     updateNewPostText: (newText: string) => void
+    addMessage:()=>void
+    updateNewMessagePost:(newMessage: string)=>void
 }
 export const App = (props: AppPropsType) => {
     return (
@@ -27,7 +29,11 @@ export const App = (props: AppPropsType) => {
                                                               addPost={props.addPost}
                                                               updateNewPostText={props.updateNewPostText}
                 />}/>
-                <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage}
+                                                              addMessage={props.addMessage}
+                                                              newMessage={props.state.dialogsPage.newMessage}
+                                                              updateNewMessagePost={props.updateNewMessagePost}
+                />}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>

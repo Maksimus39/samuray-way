@@ -26,6 +26,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogData: DialogsDataType[]
     messageData: MessageDataType[]
+    newMessage: string
 }
 export type StateType = {
     profilePage: ProfilePageType
@@ -51,7 +52,8 @@ export const state: StateType = {
             {id: 2, message: 'Дорогая, ты моя опора и вдохновение, с тобой каждый день наполнен любовью и счастьем.'},
             {id: 3, message: 'Сынок, ты наш лидер и пример для всех, гордимся твоими успехами и верим в тебя.'},
             {id: 4, message: 'Сынок, ты наше солнышко, радуешь нас каждый день своей улыбкой и добротой.'}
-        ]
+        ],
+        newMessage: ""
     }
 }
 
@@ -68,6 +70,22 @@ export const addPost = () => {
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
+    rerenderEntireThree(state)
+}
+
+export const addMessage = () => {
+    const newMessage: MessageDataType = {
+        id: 5,
+        message: state.dialogsPage.newMessage
+    }
+
+    state.dialogsPage.messageData.push(newMessage)
+    state.dialogsPage.newMessage = ""
+    rerenderEntireThree(state)
+}
+
+export const updateNewMessagePost = (newMessage: string) => {
+    state.dialogsPage.newMessage = newMessage
     rerenderEntireThree(state)
 }
 

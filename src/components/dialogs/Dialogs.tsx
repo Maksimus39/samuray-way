@@ -7,6 +7,9 @@ import {DialogsPageType} from "../redux/state";
 
 export type DialogsPropsType = {
     dialogsPage: DialogsPageType
+    addMessage: () => void
+    updateNewMessagePost: (newMessage: string) => void
+    newMessage: string
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
@@ -18,11 +21,19 @@ export const Dialogs = (props: DialogsPropsType) => {
         return <Message id={m.id} message={m.message}/>
     })
 
-    const newPostElement = React.createRef<HTMLInputElement>();
+    const newMessageElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        const text = newPostElement.current?.value
-        return alert(text)
+        // const text = newPostElement.current?.value
+        // return alert(text)
+        props.addMessage()
+    }
+
+    const onMessageChange = ()=>{
+        const message = newMessageElement.current?.value
+        if(message){
+            props.updateNewMessagePost(message)
+        }
     }
 
     return (
@@ -39,7 +50,11 @@ export const Dialogs = (props: DialogsPropsType) => {
                     {messagesElement}
                 </div>
                 <div>
-                    <input ref={newPostElement}/>
+                    <input ref={newMessageElement}
+                           placeholder={'input message'}
+                           onChange={onMessageChange}
+                           value={props.newMessage}
+                    />
                     <button onClick={addMessage}>Add Message</button>
                 </div>
             </div>
