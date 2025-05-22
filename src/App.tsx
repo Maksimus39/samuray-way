@@ -9,12 +9,13 @@ import {Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {StateType} from "./components/redux/state";
+import {StateType, updateNewPostText} from "./components/redux/state";
 
 
 type AppPropsType = {
     state: StateType
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 export const App = (props: AppPropsType) => {
     return (
@@ -23,7 +24,9 @@ export const App = (props: AppPropsType) => {
             <div className={"App-wrapper-content"}>
                 <Navbar/>
                 <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
-                                                              addPost={props.addPost}/>}/>
+                                                              addPost={props.addPost}
+                                                              updateNewPostText={props.updateNewPostText}
+                />}/>
                 <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>

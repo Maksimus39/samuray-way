@@ -3,10 +3,11 @@ import {Posts} from "./posts/Posts";
 import styles from "./MyPosts.module.css"
 import {ProfilePageType} from "../../redux/state";
 
-
 export type MyPostsPropsType = {
     profilePage: ProfilePageType
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 export const MyPosts = (props: MyPostsPropsType) => {
 
@@ -19,12 +20,13 @@ export const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLInputElement>();
 
     const addPost = () => {
+        props.addPost()
+    }
+
+    const onPostChange = () => {
         const text = newPostElement.current?.value
         if (text) {
-            props.addPost(text)
-            if (newPostElement.current) {
-                newPostElement.current.value = '';
-            }
+            props.updateNewPostText(text)
         }
     }
 
@@ -32,7 +34,11 @@ export const MyPosts = (props: MyPostsPropsType) => {
         <div className={styles.section}>
             <div>Ava + description</div>
             <div>
-                <input ref={newPostElement} placeholder={'input text'}/>
+                <input ref={newPostElement}
+                       placeholder={'input text'}
+                       onChange={onPostChange}
+                       value={props.newPostText}
+                />
                 <button onClick={addPost}>Add Post</button>
                 <div>My post</div>
             </div>
