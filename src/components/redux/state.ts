@@ -2,8 +2,6 @@ import maksim from "./../../assets/images/DSCF1032_1.webp"
 import larisa from "./../../assets/images/SDC11937_1.webp"
 import andrey from "./../../assets/images/20210313_225449.jpg"
 import bogdan from "./../../assets/images/20210228_201100.webp"
-import {rerenderEntireThree} from "../../render";
-
 
 export type DialogsDataType = {
     id: number
@@ -31,6 +29,11 @@ export type DialogsPageType = {
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+}
+
+
+let rerenderEntireThree = (state: StateType) => {
+    console.log('state')
 }
 
 export const state: StateType = {
@@ -87,6 +90,10 @@ export const addMessage = () => {
 export const updateNewMessagePost = (newMessage: string) => {
     state.dialogsPage.newMessage = newMessage
     rerenderEntireThree(state)
+}
+
+export const subscribe = (observer: (state: StateType) => void) => {
+    rerenderEntireThree = observer
 }
 
 
