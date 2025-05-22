@@ -31,70 +31,84 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
-
-let rerenderEntireThree = (state: StateType) => {
-    console.log('state')
+export type StoreType = {
+    _state: StateType
+    _callSubscriber: (state: StateType) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addMessage: () => void
+    updateNewMessagePost: (newMessage: string) => void
+    subscribe: (observer: (state: StateType) => void) => void
+    getState: () => StateType
 }
 
-export const state: StateType = {
-    profilePage: {
-        postData: [
-            {id: 1, message: `Hi,how are you?`, likesCount: 10}
-        ],
-        newPostText: "",
+
+const store: StoreType = {
+    _state: {
+        profilePage: {
+            postData: [
+                {id: 1, message: `Hi,how are you?`, likesCount: 10}
+            ],
+            newPostText: "",
+        },
+        dialogsPage: {
+            dialogData: [
+                {id: 1, name: "Maksim", img: maksim},
+                {id: 2, name: "Larisa", img: larisa},
+                {id: 3, name: "Andrey", img: andrey},
+                {id: 4, name: "Bogdan", img: bogdan}
+            ],
+            messageData: [
+                {id: 1, message: 'Я горжусь вами, мои дорогие, всегда будьте счастливы и заботьтесь друг о друге.'},
+                {
+                    id: 2,
+                    message: 'Дорогая, ты моя опора и вдохновение, с тобой каждый день наполнен любовью и счастьем.'
+                },
+                {id: 3, message: 'Сынок, ты наш лидер и пример для всех, гордимся твоими успехами и верим в тебя.'},
+                {id: 4, message: 'Сынок, ты наше солнышко, радуешь нас каждый день своей улыбкой и добротой.'}
+            ],
+            newMessage: ""
+        }
     },
-    dialogsPage: {
-        dialogData: [
-            {id: 1, name: "Maksim", img: maksim},
-            {id: 2, name: "Larisa", img: larisa},
-            {id: 3, name: "Andrey", img: andrey},
-            {id: 4, name: "Bogdan", img: bogdan}
-        ],
-        messageData: [
-            {id: 1, message: 'Я горжусь вами, мои дорогие, всегда будьте счастливы и заботьтесь друг о друге.'},
-            {id: 2, message: 'Дорогая, ты моя опора и вдохновение, с тобой каждый день наполнен любовью и счастьем.'},
-            {id: 3, message: 'Сынок, ты наш лидер и пример для всех, гордимся твоими успехами и верим в тебя.'},
-            {id: 4, message: 'Сынок, ты наше солнышко, радуешь нас каждый день своей улыбкой и добротой.'}
-        ],
-        newMessage: ""
+    getState() {
+        return this._state
+    },
+    _callSubscriber(state: StateType) {
+        console.log('state')
+    },
+    addPost() {
+        const newPost: PostDataType = {
+            id: 2,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0
+        }
+        this._state.profilePage.postData.push(newPost)
+        this._state.profilePage.newPostText = ""
+        this._callSubscriber(this._state)
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText
+        this._callSubscriber(this._state)
+    },
+    addMessage() {
+        const newMessage: MessageDataType = {
+            id: 5,
+            message: this._state.dialogsPage.newMessage
+        }
+        this._state.dialogsPage.messageData.push(newMessage)
+        this._state.dialogsPage.newMessage = ""
+        this._callSubscriber(this._state)
+    },
+    updateNewMessagePost(newMessage: string) {
+        this._state.dialogsPage.newMessage = newMessage
+        this._callSubscriber(this._state)
+    },
+    subscribe(observer: (state: StateType) => void) {
+        this._callSubscriber = observer
     }
 }
 
-export const addPost = () => {
-    const newPost: PostDataType = {
-        id: 2,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    }
-    state.profilePage.postData.push(newPost)
-    state.profilePage.newPostText = ""
-    rerenderEntireThree(state)
-}
-
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    rerenderEntireThree(state)
-}
-
-export const addMessage = () => {
-    const newMessage: MessageDataType = {
-        id: 5,
-        message: state.dialogsPage.newMessage
-    }
-
-    state.dialogsPage.messageData.push(newMessage)
-    state.dialogsPage.newMessage = ""
-    rerenderEntireThree(state)
-}
-
-export const updateNewMessagePost = (newMessage: string) => {
-    state.dialogsPage.newMessage = newMessage
-    rerenderEntireThree(state)
-}
-
-export const subscribe = (observer: (state: StateType) => void) => {
-    rerenderEntireThree = observer
-}
+export default store
 
 
 
