@@ -1,13 +1,14 @@
 import React from 'react';
 import {Posts} from "./posts/Posts";
 import styles from "./MyPosts.module.css"
-import {ProfilePageType} from "../../redux/state";
+import {DispatchActionType, ProfilePageType} from "../../redux/state";
 
 export type MyPostsPropsType = {
     profilePage: ProfilePageType
-    addPost: () => void
+    // addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    // updateNewPostText: (newText: string) => void
+    dispatch: (action: DispatchActionType) => void
 }
 export const MyPosts = (props: MyPostsPropsType) => {
 
@@ -20,13 +21,15 @@ export const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLInputElement>();
 
     const addPost = () => {
-        props.addPost()
+        // props.addPost()
+        props.dispatch({type: "ADD_POST_ACTION_TYPE"})
     }
 
     const onPostChange = () => {
         const text = newPostElement.current?.value
         if (text) {
-            props.updateNewPostText(text)
+            // props.updateNewPostText(text)
+            props.dispatch({type: "UPDATE_NEW_POST_TEXT", newText: text})
         }
     }
 
