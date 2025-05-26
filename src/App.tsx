@@ -14,10 +14,6 @@ import {DispatchActionType, StateType} from "./components/redux/state";
 
 type AppPropsType = {
     state: StateType
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage: () => void
-    // updateNewMessagePost: (newMessage: string) => void
     dispatch: (action: DispatchActionType) => void
 }
 export const App = (props: AppPropsType) => {
@@ -28,15 +24,11 @@ export const App = (props: AppPropsType) => {
                 <Navbar/>
                 <Route path="/profile" render={() => <Profile
                     profilePage={props.state.profilePage}
-                    // addPost={props.addPost}
-                    // updateNewPostText={props.updateNewPostText}
                     dispatch={props.dispatch}
                 />}/>
                 <Route path="/dialogs" render={() => <Dialogs
                     dialogsPage={props.state.dialogsPage}
-                    // addMessage={props.addMessage}
                     newMessage={props.state.dialogsPage.newMessage}
-                    // updateNewMessagePost={props.updateNewMessagePost}
                     dispatch={props.dispatch}
                 />}/>
                 <Route path="/news" render={() => <News/>}/>

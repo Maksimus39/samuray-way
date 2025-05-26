@@ -33,10 +33,6 @@ export type StateType = {
 export type StoreType = {
     _state: StateType
     _callSubscriber: (state: StateType) => void
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage: () => void
-    // updateNewMessagePost: (newMessage: string) => void
     subscribe: (observer: (state: StateType) => void) => void
     getState: () => StateType
     dispatch: (action: DispatchActionType) => void
@@ -44,8 +40,8 @@ export type StoreType = {
 
 export type DispatchActionType = AddPostActionType
     | UpdateNewPostTextActionType
-    | AddMessage
-    | UpdateNewMessagePost
+    | AddMessageActionType
+    | UpdateNewMessagePostActionType
 
 type  AddPostActionType = {
     type: "ADD_POST_ACTION_TYPE"
@@ -56,14 +52,32 @@ type UpdateNewPostTextActionType = {
     newText: string
 }
 
-type AddMessage = {
+type AddMessageActionType = {
     type: "ADD_MESSAGE"
 }
 
-type UpdateNewMessagePost = {
+type UpdateNewMessagePostActionType = {
     type: "UPDATE_NEW_MESSAGE_POST"
     newMessage: string
 }
+
+export const addPostActionCreator = (): AddPostActionType => ({
+    type: "ADD_POST_ACTION_TYPE" as const
+})
+
+export const updateNewPostTextActionCreator = (newText: string): UpdateNewPostTextActionType => ({
+    type: "UPDATE_NEW_POST_TEXT" as const,
+    newText
+})
+
+export const addMessageActionCreator = (): AddMessageActionType => ({
+    type: "ADD_MESSAGE" as const
+})
+
+export const updateNewMessagePostActionCreator = (newMessage: string) => ({
+    type: "UPDATE_NEW_MESSAGE_POST" as const,
+    newMessage
+})
 
 const store: StoreType = {
     _state: {
@@ -98,33 +112,6 @@ const store: StoreType = {
     _callSubscriber(state: StateType) {
         console.log('state')
     },
-    // addPost() {
-    //     const newPost: PostDataType = {
-    //         id: 2,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 0
-    //     }
-    //     this._state.profilePage.postData.push(newPost)
-    //     this._state.profilePage.newPostText = ""
-    //     this._callSubscriber(this._state)
-    // },
-    // updateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._callSubscriber(this._state)
-    // },
-    // addMessage() {
-    //     const newMessage: MessageDataType = {
-    //         id: 5,
-    //         message: this._state.dialogsPage.newMessage
-    //     }
-    //     this._state.dialogsPage.messageData.push(newMessage)
-    //     this._state.dialogsPage.newMessage = ""
-    //     this._callSubscriber(this._state)
-    // },
-    // updateNewMessagePost(newMessage: string) {
-    //     this._state.dialogsPage.newMessage = newMessage
-    //     this._callSubscriber(this._state)
-    // },
     subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer
     },
@@ -149,7 +136,7 @@ const store: StoreType = {
             this._state.dialogsPage.messageData.push(newMessage)
             this._state.dialogsPage.newMessage = ""
             this._callSubscriber(this._state)
-        } else if(action.type ===  "UPDATE_NEW_MESSAGE_POST"){
+        } else if (action.type === "UPDATE_NEW_MESSAGE_POST") {
             this._state.dialogsPage.newMessage = action.newMessage
             this._callSubscriber(this._state)
         }

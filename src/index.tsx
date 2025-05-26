@@ -8,21 +8,12 @@ const rerenderEntireThree = (state: StateType) => {
     return (
         ReactDOM.render(
             <BrowserRouter>
-                <App state={state}
-                     // addPost={store.addPost.bind(store)}
-                     // updateNewPostText={store.updateNewPostText.bind(store)}
-                     // addMessage={store.addMessage.bind(store)}
-                     // updateNewMessagePost={store.updateNewMessagePost.bind(store)}
-                     dispatch={store.dispatch.bind(store)}
-                />
-
+                <App state={state} dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>,
             document.getElementById('root')
         )
     )
 }
-
-
 rerenderEntireThree(store.getState())
 
 store.subscribe(rerenderEntireThree)
