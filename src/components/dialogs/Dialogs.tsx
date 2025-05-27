@@ -4,31 +4,34 @@ import {DialogItem} from "./dialogItem/DialogItem";
 import {Message} from "./message/Message";
 import {
     addMessageActionCreator,
-    DialogsPageType,
-    DispatchActionType,
+    DispatchActionType, StoreType,
     updateNewMessagePostActionCreator
 } from "../redux/state";
 
 
 export type DialogsPropsType = {
-    dialogsPage: DialogsPageType
     newMessage: string
+    store: StoreType
     dispatch: (action: DispatchActionType) => void
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElement = props.dialogsPage.dialogData.map(d => {
+    const state = props.store.getState().dialogsPage
+
+    const dialogsElement = state.dialogData.map(d => {
         return <DialogItem id={d.id} name={d.name} img={d.img}/>
     })
 
-    const messagesElement = props.dialogsPage.messageData.map(m => {
+    const messagesElement = state.messageData.map(m => {
         return <Message id={m.id} message={m.message}/>
     })
 
     const newMessageElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        props.dispatch(addMessageActionCreator())
+        if(props.newMessage.trim()){
+            props.dispatch(addMessageActionCreator())
+        }
     }
 
     const onMessageChange = () => {

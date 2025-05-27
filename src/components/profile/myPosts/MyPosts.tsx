@@ -4,11 +4,11 @@ import styles from "./MyPosts.module.css"
 import {
     addPostActionCreator,
     DispatchActionType,
-    ProfilePageType, updateNewPostTextActionCreator
+    ProfilePageType, StoreType, updateNewPostTextActionCreator
 } from "../../redux/state";
 
 export type MyPostsPropsType = {
-    profilePage: ProfilePageType
+    store: StoreType
     newPostText: string
     dispatch: (action: DispatchActionType) => void
 }
@@ -17,7 +17,9 @@ export type MyPostsPropsType = {
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
-    const postsElement = props.profilePage.postData.map(p => {
+    const state = props.store.getState().profilePage
+
+    const postsElement = state.postData.map(p => {
         return <Posts id={p.id}
                       likesCount={p.likesCount}
                       message={p.message}/>
@@ -26,7 +28,9 @@ export const MyPosts = (props: MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLInputElement>();
 
     const addPost = () => {
-        props.dispatch(addPostActionCreator())
+        if (props.newPostText.trim()) {
+            props.dispatch(addPostActionCreator());
+        }
     }
 
     const onPostChange = () => {

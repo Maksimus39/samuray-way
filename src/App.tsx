@@ -9,11 +9,11 @@ import {Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {DispatchActionType, StateType} from "./components/redux/state";
+import {DispatchActionType, StoreType} from "./components/redux/state";
 
 
 type AppPropsType = {
-    state: StateType
+    store: StoreType
     dispatch: (action: DispatchActionType) => void
 }
 export const App = (props: AppPropsType) => {
@@ -23,12 +23,12 @@ export const App = (props: AppPropsType) => {
             <div className={"App-wrapper-content"}>
                 <Navbar/>
                 <Route path="/profile" render={() => <Profile
-                    profilePage={props.state.profilePage}
+                    store={props.store}
                     dispatch={props.dispatch}
                 />}/>
                 <Route path="/dialogs" render={() => <Dialogs
-                    dialogsPage={props.state.dialogsPage}
-                    newMessage={props.state.dialogsPage.newMessage}
+                    newMessage={props.store._state.dialogsPage.newMessage}
+                    store={props.store}
                     dispatch={props.dispatch}
                 />}/>
                 <Route path="/news" render={() => <News/>}/>
