@@ -2,6 +2,12 @@ import maksim from "./../../assets/images/DSCF1032_1.webp"
 import larisa from "./../../assets/images/SDC11937_1.webp"
 import andrey from "./../../assets/images/20210313_225449.jpg"
 import bogdan from "./../../assets/images/20210228_201100.webp"
+import {
+    AddPostActionType,
+    profileReducer,
+    UpdateNewPostTextActionType
+} from "./reducers/profilereducer";
+import {AddMessageActionType, dialogsReducer, UpdateNewMessagePostActionType} from "./reducers/dialogsReducer";
 
 export type DialogsDataType = {
     id: number
@@ -43,42 +49,6 @@ export type DispatchActionType = AddPostActionType
     | AddMessageActionType
     | UpdateNewMessagePostActionType
 
-type  AddPostActionType = {
-    type: "ADD_POST_ACTION_TYPE"
-}
-
-type UpdateNewPostTextActionType = {
-    type: "UPDATE_NEW_POST_TEXT"
-    newText: string
-}
-
-type AddMessageActionType = {
-    type: "ADD_MESSAGE"
-}
-
-type UpdateNewMessagePostActionType = {
-    type: "UPDATE_NEW_MESSAGE_POST"
-    newMessage: string
-}
-
-export const addPostActionCreator = (): AddPostActionType => ({
-    type: "ADD_POST_ACTION_TYPE" as const
-})
-
-export const updateNewPostTextActionCreator = (newText: string): UpdateNewPostTextActionType => ({
-    type: "UPDATE_NEW_POST_TEXT" as const,
-    newText
-})
-
-export const addMessageActionCreator = (): AddMessageActionType => ({
-    type: "ADD_MESSAGE" as const
-})
-
-export const updateNewMessagePostActionCreator = (newMessage: string):UpdateNewMessagePostActionType => ({
-    type: "UPDATE_NEW_MESSAGE_POST" as const,
-    newMessage
-})
-
 const store: StoreType = {
     _state: {
         profilePage: {
@@ -116,30 +86,10 @@ const store: StoreType = {
         this._callSubscriber = observer
     },
     dispatch(action: DispatchActionType) {
-        if (action.type === "ADD_POST_ACTION_TYPE") {
-            const newPost: PostDataType = {
-                id: 2,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.postData.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._callSubscriber(this._state)
-        } else if (action.type === "UPDATE_NEW_POST_TEXT") {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === "ADD_MESSAGE") {
-            const newMessage: MessageDataType = {
-                id: 5,
-                message: this._state.dialogsPage.newMessage
-            }
-            this._state.dialogsPage.messageData.push(newMessage)
-            this._state.dialogsPage.newMessage = ""
-            this._callSubscriber(this._state)
-        } else if (action.type === "UPDATE_NEW_MESSAGE_POST") {
-            this._state.dialogsPage.newMessage = action.newMessage
-            this._callSubscriber(this._state)
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
     }
 }
 
