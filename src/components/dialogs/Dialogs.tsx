@@ -4,7 +4,7 @@ import {DialogItem} from "./dialogItem/DialogItem";
 import {Message} from "./message/Message";
 import {
     DispatchActionType, StoreType,
-} from "../redux/state";
+} from "../redux/store";
 import {addMessageActionCreator, updateNewMessagePostActionCreator} from "../redux/reducers/dialogsReducer";
 
 

@@ -1,8 +1,10 @@
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import {App} from "./App";
-import store, {StateType} from "./components/redux/state";
 import React from "react";
+import {StateType} from "./components/redux/store";
+import store from "./components/redux/store";
+
 
 const rerenderEntireThree = (state: StateType) => {
     return (
@@ -16,4 +18,7 @@ const rerenderEntireThree = (state: StateType) => {
 }
 rerenderEntireThree(store.getState())
 
-store.subscribe(rerenderEntireThree)
+store.subscribe(() => {
+    const state = store.getState()
+    rerenderEntireThree(state)
+})

@@ -2,10 +2,9 @@ import React from 'react';
 import {Posts} from "./posts/Posts";
 import styles from "./MyPosts.module.css"
 import {
-
     DispatchActionType,
     StoreType,
-} from "../../redux/state";
+} from "../../redux/store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/reducers/profilereducer";
 
 export type MyPostsPropsType = {
