@@ -9,7 +9,8 @@ import {Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {DispatchActionType, StoreType} from "./components/redux/store";
+import {DispatchActionType} from "./components/redux/store";
+import {StoreType} from "./components/redux/reduxStore";
 
 
 type AppPropsType = {
@@ -27,7 +28,7 @@ export const App = (props: AppPropsType) => {
                     dispatch={props.dispatch}
                 />}/>
                 <Route path="/dialogs" render={() => <Dialogs
-                    newMessage={props.store._state.dialogsPage.newMessage}
+                    newMessage={props.store.getState().dialogsPage.newMessage}
                     store={props.store}
                     dispatch={props.dispatch}
                 />}/>

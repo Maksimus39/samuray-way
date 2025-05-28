@@ -3,9 +3,10 @@ import styles from './Dialogs.module.css'
 import {DialogItem} from "./dialogItem/DialogItem";
 import {Message} from "./message/Message";
 import {
-    DispatchActionType, StoreType,
+    DispatchActionType,
 } from "../redux/store";
 import {addMessageActionCreator, updateNewMessagePostActionCreator} from "../redux/reducers/dialogsReducer";
+import {StoreType} from "../redux/reduxStore";
 
 
 export type DialogsPropsType = {

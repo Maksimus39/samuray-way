@@ -3,7 +3,7 @@ import {BrowserRouter} from "react-router-dom";
 import {App} from "./App";
 import React from "react";
 import {StateType} from "./components/redux/store";
-import store from "./components/redux/store";
+import store from "./components/redux/reduxStore";
 
 
 const rerenderEntireThree = (state: StateType) => {

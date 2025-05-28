@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './Profile.module.css'
 import {MyPosts} from "./myPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
-import {DispatchActionType, StoreType} from "../redux/store";
+import {DispatchActionType} from "../redux/store";
+import {StoreType} from "../redux/reduxStore";
 
 
 type ProfilePropsType = {
@@ -15,7 +16,7 @@ export const Profile = (props: ProfilePropsType) => {
             <ProfileInfo/>
             <MyPosts
                 store={props.store}
-                newPostText={props.store._state.profilePage.newPostText}
+                newPostText={props.store.getState().profilePage.newPostText}
                 dispatch={props.dispatch}
             />
         </div>

@@ -3,9 +3,9 @@ import {Posts} from "./posts/Posts";
 import styles from "./MyPosts.module.css"
 import {
     DispatchActionType,
-    StoreType,
 } from "../../redux/store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/reducers/profilereducer";
+import {StoreType} from "../../redux/reduxStore";
 
 export type MyPostsPropsType = {
     store: StoreType
