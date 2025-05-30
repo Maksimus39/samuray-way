@@ -2,42 +2,35 @@ import React from 'react';
 import styles from './Dialogs.module.css'
 import {DialogItem} from "./dialogItem/DialogItem";
 import {Message} from "./message/Message";
-import {
-    DispatchActionType,
-} from "../redux/store";
-import {addMessageActionCreator, updateNewMessagePostActionCreator} from "../redux/reducers/dialogsReducer";
-import {StoreType} from "../redux/reduxStore";
+import {DialogsPageType,} from "../redux/store";
 
 
 export type DialogsPropsType = {
     newMessage: string
-    store: StoreType
-    dispatch: (action: DispatchActionType) => void
+    addMessage: () => void
+    onMessageChange: (message: string) => void
+    dialogsPage: DialogsPageType
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
-    const state = props.store.getState().dialogsPage
-
-    const dialogsElement = state.dialogData.map(d => {
+    const dialogsElement = props.dialogsPage.dialogData.map(d => {
         return <DialogItem id={d.id} name={d.name} img={d.img}/>
     })
 
-    const messagesElement = state.messageData.map(m => {
+    const messagesElement = props.dialogsPage.messageData.map(m => {
         return <Message id={m.id} message={m.message}/>
     })
 
     const newMessageElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        if(props.newMessage.trim()){
-            props.dispatch(addMessageActionCreator())
-        }
+        props.addMessage()
     }
 
     const onMessageChange = () => {
         const message = newMessageElement.current?.value
         if (message) {
-            props.dispatch(updateNewMessagePostActionCreator(message))
+            props.onMessageChange(message)
         }
     }
 

@@ -1,24 +1,19 @@
 import React from 'react';
 import {Posts} from "./posts/Posts";
 import styles from "./MyPosts.module.css"
-import {
-    DispatchActionType,
-} from "../../redux/store";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/reducers/profilereducer";
-import {StoreType} from "../../redux/reduxStore";
+import {PostDataType,} from "../../redux/store";
+
 
 export type MyPostsPropsType = {
-    store: StoreType
     newPostText: string
-    dispatch: (action: DispatchActionType) => void
+    postData: PostDataType[]
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
-
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
-    const state = props.store.getState().profilePage
-
-    const postsElement = state.postData.map(p => {
+    const postsElement = props.postData.map(p => {
         return <Posts id={p.id}
                       likesCount={p.likesCount}
                       message={p.message}/>
@@ -26,16 +21,14 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     const newPostElement = React.createRef<HTMLInputElement>();
 
-    const addPost = () => {
-        if (props.newPostText.trim()) {
-            props.dispatch(addPostActionCreator());
-        }
+    const onAddPost = () => {
+        props.addPost()
     }
 
     const onPostChange = () => {
         const text = newPostElement.current?.value
         if (text) {
-            props.dispatch(updateNewPostTextActionCreator(text))
+            props.updateNewPostText(text)
         }
     }
 
@@ -48,7 +41,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                        onChange={onPostChange}
                        value={props.newPostText}
                 />
-                <button onClick={addPost}>Add Post</button>
+                <button onClick={onAddPost}>Add Post</button>
                 <div>My post</div>
             </div>
             {postsElement}

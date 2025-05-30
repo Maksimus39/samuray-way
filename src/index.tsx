@@ -10,7 +10,8 @@ const rerenderEntireThree = (state: StateType) => {
     return (
         ReactDOM.render(
             <BrowserRouter>
-                <App store={store} dispatch={store.dispatch.bind(store)}/>
+                <App store={store}
+                />
             </BrowserRouter>,
             document.getElementById('root')
         )

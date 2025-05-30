@@ -4,18 +4,16 @@ import {Header} from "./components/header/Header";
 import {Footer} from "./components/footer/Footer";
 import {Navbar} from "./components/navbar/Navbar";
 import {Profile} from "./components/profile/Profile";
-import {Dialogs} from "./components/dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {DispatchActionType} from "./components/redux/store";
 import {StoreType} from "./components/redux/reduxStore";
+import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 
 
 type AppPropsType = {
     store: StoreType
-    dispatch: (action: DispatchActionType) => void
 }
 export const App = (props: AppPropsType) => {
     return (
@@ -25,12 +23,9 @@ export const App = (props: AppPropsType) => {
                 <Navbar/>
                 <Route path="/profile" render={() => <Profile
                     store={props.store}
-                    dispatch={props.dispatch}
                 />}/>
-                <Route path="/dialogs" render={() => <Dialogs
-                    newMessage={props.store.getState().dialogsPage.newMessage}
+                <Route path="/dialogs" render={() => <DialogsContainer
                     store={props.store}
-                    dispatch={props.dispatch}
                 />}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
