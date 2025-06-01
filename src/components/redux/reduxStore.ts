@@ -10,7 +10,7 @@ const reducers = combineReducers({
 })
 
 
-const store:StoreType = createStore(reducers);
+const store: StoreType = createStore(reducers);
 export type RootState = ReturnType<typeof reducers>;
 export type StoreType = Store<StateType>;
 export default store
