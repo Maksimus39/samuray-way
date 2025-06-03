@@ -6,13 +6,12 @@ import {DialogsPageType,} from "../redux/store";
 
 
 export type DialogsPropsType = {
-    newMessage: string
+    newMessage:string
     addMessage: () => void
     onMessageChange: (message: string) => void
     dialogsPage: DialogsPageType
 }
 export const Dialogs = (props: DialogsPropsType) => {
-
     const dialogsElement = props.dialogsPage.dialogData.map(d => {
         return <DialogItem id={d.id} name={d.name} img={d.img}/>
     })
