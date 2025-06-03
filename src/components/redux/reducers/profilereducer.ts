@@ -1,4 +1,14 @@
-import { DispatchActionType, PostDataType, ProfilePageType } from "../store";
+import { DispatchActionType } from "../store";
+
+export type PostDataType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type ProfilePageType = {
+    postData: PostDataType[]
+    newPostText: string
+}
 
 export type AddPostActionType = {
     type: "ADD_POST_ACTION_TYPE"

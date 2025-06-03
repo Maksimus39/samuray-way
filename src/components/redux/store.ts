@@ -2,40 +2,15 @@ import maksim from "./../../assets/images/DSCF1032_1.webp"
 import larisa from "./../../assets/images/SDC11937_1.webp"
 import andrey from "./../../assets/images/20210313_225449.jpg"
 import bogdan from "./../../assets/images/20210228_201100.webp"
+import {AddPostActionType, profileReducer, UpdateNewPostTextActionType} from "./reducers/profilereducer";
 import {
-    AddPostActionType,
-    profileReducer,
-    UpdateNewPostTextActionType
-} from "./reducers/profilereducer";
-import {AddMessageActionType, dialogsReducer, UpdateNewMessagePostActionType} from "./reducers/dialogsReducer";
+    AddMessageActionType,
+    dialogsReducer,
+    StateType,
+    UpdateNewMessagePostActionType
+} from "./reducers/dialogsReducer";
 
-export type DialogsDataType = {
-    id: number
-    name: string
-    img: string
-}
-export type MessageDataType = {
-    id: number
-    message: string
-}
-export type PostDataType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export type ProfilePageType = {
-    postData: PostDataType[]
-    newPostText: string
-}
-export type DialogsPageType = {
-    dialogData: DialogsDataType[]
-    messageData: MessageDataType[]
-    newMessage: string
-}
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-}
+
 type StoreType = {
     _state: StateType
     _callSubscriber: (state: StateType) => void

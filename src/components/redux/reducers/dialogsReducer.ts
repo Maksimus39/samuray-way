@@ -1,8 +1,29 @@
-import {DialogsPageType, DispatchActionType, MessageDataType} from "../store";
+import {DispatchActionType} from "../store";
 import maksim from "../../../assets/images/DSCF1032_1.webp";
 import larisa from "../../../assets/images/SDC11937_1.webp";
 import andrey from "../../../assets/images/20210313_225449.jpg";
 import bogdan from "../../../assets/images/20210228_201100.webp";
+import {ProfilePageType} from "./profilereducer";
+
+
+export type StateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+}
+export type DialogsDataType = {
+    id: number
+    name: string
+    img: string
+}
+export type MessageDataType = {
+    id: number
+    message: string
+}
+export type DialogsPageType = {
+    dialogData: DialogsDataType[]
+    messageData: MessageDataType[]
+    newMessage: string
+}
 
 export type AddMessageActionType = {
     type: "ADD_MESSAGE"

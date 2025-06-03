@@ -2,15 +2,9 @@ import React from 'react';
 import styles from './Dialogs.module.css'
 import {DialogItem} from "./dialogItem/DialogItem";
 import {Message} from "./message/Message";
-import {DialogsPageType,} from "../redux/store";
+import {DialogsPropsType} from "./DialogsContainer";
 
 
-export type DialogsPropsType = {
-    newMessage:string
-    addMessage: () => void
-    onMessageChange: (message: string) => void
-    dialogsPage: DialogsPageType
-}
 export const Dialogs = (props: DialogsPropsType) => {
     const dialogsElement = props.dialogsPage.dialogData.map(d => {
         return <DialogItem id={d.id} name={d.name} img={d.img}/>
