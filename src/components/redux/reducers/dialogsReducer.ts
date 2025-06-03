@@ -41,7 +41,7 @@ export const updateNewMessagePostActionCreator = (newMessage: string): UpdateNew
     newMessage
 })
 
-const dialogsInitialState = {
+const dialogsInitialState:DialogsPageType = {
     dialogData: [
         {id: 1, name: "Maksim", img: maksim},
         {id: 2, name: "Larisa", img: larisa},
@@ -60,7 +60,7 @@ const dialogsInitialState = {
     newMessage: ""
 }
 
-export const dialogsReducer = (state = dialogsInitialState, action: DispatchActionType): DialogsPageType => {
+export const dialogsReducer = (state:DialogsPageType = dialogsInitialState, action: DispatchActionType): DialogsPageType => {
     switch (action.type) {
         case "ADD_MESSAGE":
             const newMessage: MessageDataType = {

@@ -9,6 +9,7 @@ import {
     StateType,
     UpdateNewMessagePostActionType
 } from "./reducers/dialogsReducer";
+import {FollowActionType, SetUsersActionType, UnFollowActionType} from "./reducers/usersReducer";
 
 
 type StoreType = {
@@ -23,6 +24,9 @@ export type DispatchActionType = AddPostActionType
     | UpdateNewPostTextActionType
     | AddMessageActionType
     | UpdateNewMessagePostActionType
+    | FollowActionType
+    | UnFollowActionType
+    | SetUsersActionType
 
 const store: StoreType = {
     _state: {

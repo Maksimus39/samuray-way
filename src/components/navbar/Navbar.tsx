@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+import {Users} from "../users/Users";
 
 export const Navbar = () => {
     return (
@@ -10,6 +11,9 @@ export const Navbar = () => {
             </div>
             <div className={styles.item}>
                 <NavLink to="/dialogs">Messages</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to="/users">Users</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink to="/news">News</NavLink>
