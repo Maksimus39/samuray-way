@@ -43,15 +43,18 @@ export const dialogsReducer = (state = dialogsInitialState, action: DispatchActi
     switch (action.type) {
         case "ADD_MESSAGE":
             const newMessage: MessageDataType = {
-                id: 5,
+                id: state.dialogData.length + 1,
                 message: state.newMessage
+            };
+            return {
+                ...state,
+                messageData: [...state.messageData, newMessage],
+                newMessage: ""
             }
-            state.messageData.push(newMessage)
-            state.newMessage = ""
-            return state;
         case "UPDATE_NEW_MESSAGE_POST":
-            state.newMessage = action.newMessage
-            return state;
+            return {
+                ...state, newMessage: action.newMessage
+            }
         default:
             return state
     }
