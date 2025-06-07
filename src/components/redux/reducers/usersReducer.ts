@@ -1,14 +1,18 @@
 import {DispatchActionType} from "../store";
 
+type PhotosType = {
+    small: ""
+    large: ""
+}
 export type LocationType = {
     city: string
     country: string
 }
 export type UsersDataType = {
     id: number
-    photo:string
+    photos: PhotosType
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: LocationType
 }
