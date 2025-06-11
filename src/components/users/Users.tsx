@@ -4,22 +4,20 @@ import {UsersPropsType} from "./usersContainer/UsersContainer";
 import axios from "axios";
 import userPhoto from "./../../assets/images/image.png"
 
-export const Users = (props: UsersPropsType) => {
+export class Users extends React.Component<UsersPropsType> {
+    constructor(props: UsersPropsType) {
+        super(props);
 
-    const getUsers = () => {
-        if (props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
                 debugger
-                props.setUsers(res.data.items)
+                this.props.setUsers(res.data.items)
             })
-        }
     }
 
-
-    return (
+    render() {
+        return (
             <div className={styles.users}>
-                <button onClick={getUsers}>Get users</button>
-                {props.users.map(user => {
+                {this.props.users.map(user => {
                     return <div key={user.id}>
                     <span>
                         <div className={styles.images}>
@@ -28,10 +26,10 @@ export const Users = (props: UsersPropsType) => {
                        <div>
                            {user.followed
                                ? <button onClick={() => {
-                                   props.unFollow(user.id)
+                                   this.props.unFollow(user.id)
                                }}>UnFollow</button>
                                : <button onClick={() => {
-                                   props.follow(user.id)
+                                   this.props.follow(user.id)
                                }}>Follow</button>}
                        </div>
                     </span>
@@ -48,6 +46,7 @@ export const Users = (props: UsersPropsType) => {
                     </div>
                 })}
             </div>
-    );
-};
+        );
+    }
+}
 
