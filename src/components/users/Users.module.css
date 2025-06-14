@@ -18,3 +18,9 @@
     width: 100px;
     height: 100px;
 }
+
+.selectedPage{
+  display: flex;
+    font-weight: bold;
+    gap: 14px;
+}

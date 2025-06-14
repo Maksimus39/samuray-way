@@ -18,11 +18,17 @@ export type UsersDataType = {
 }
 export type UsersInitialStateType = {
     users: UsersDataType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 
 const usersInitialState: UsersInitialStateType = {
-    users: []
+    users: [],
+    pageSize: 4,
+    totalUsersCount: 0,
+    currentPage: 4
 }
 
 export const usersReducer = (state = usersInitialState, action: DispatchActionType): UsersInitialStateType => {
@@ -47,12 +53,34 @@ export const usersReducer = (state = usersInitialState, action: DispatchActionTy
             }
         case "SET_USERS": {
             return {
-                ...state, users: [...state.users, ...action.users]
+                ...state, users: [...action.users, ...state.users,]
+            }
+
+        }
+        case "SET_CURRENT_PAGE": {
+            return {
+                ...state, currentPage: action.currentPage
             }
         }
+        case "SET_TOTAL_COUNT":{
+            return {
+             ...state,totalUsersCount:action.totalUsersCount
+            }
+        }
+
         default:
             return state
     }
+}
+
+export type SetTotalUsersCountActionType = {
+    type: "SET_TOTAL_COUNT"
+    totalUsersCount: number
+}
+
+export type SetCurrentPageActionType = {
+    type: "SET_CURRENT_PAGE"
+    currentPage: number
 }
 
 
@@ -83,5 +111,15 @@ export const unFollowActionCreator = (usersID: number): UnFollowActionType => ({
 export const setUsersActionCreator = (users: UsersDataType[]): SetUsersActionType => ({
     type: "SET_USERS" as const,
     users
+})
+
+export const setCurrentPageActionCreator = (currentPage: number): SetCurrentPageActionType => ({
+    type: "SET_CURRENT_PAGE" as const,
+    currentPage
+})
+
+export const setTotalUsersCountActionCreator = (totalUsersCount: number): SetTotalUsersCountActionType => ({
+    type: "SET_TOTAL_COUNT" as const,
+    totalUsersCount
 })
 
