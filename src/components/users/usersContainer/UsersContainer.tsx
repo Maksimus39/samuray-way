@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {Users} from "../Users";
+import {UsersApiComponent} from "../UsersApiComponent";
 import {AppRootState} from "../../redux/reduxStore";
 import {Dispatch} from "redux";
 import {
@@ -12,24 +12,24 @@ import {
 
 type MapStateToPropsType = {
     users: UsersDataType[],
-    pageSize:number,
-    totalUsersCount:number
-    currentPage:number
+    pageSize: number,
+    totalUsersCount: number
+    currentPage: number
 }
 type MapDispatchPropsType = {
     follow: (usersID: number) => void
     unFollow: (usersID: number) => void
     setUsers: (users: UsersDataType[]) => void
-    setCurrentPage:(currentPage: number)=>void
-    setTotalUsersCount:(totalUsersCount:number)=>void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalUsersCount: number) => void
 }
 
 const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     return {
         users: state.usersPage.users,
-        pageSize:state.usersPage.pageSize,
-        totalUsersCount:state.usersPage.totalUsersCount,
-        currentPage:state.usersPage.currentPage
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
     }
 }
 
@@ -44,10 +44,10 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         setUsers: (users: UsersDataType[]) => {
             dispatch(setUsersActionCreator(users))
         },
-        setCurrentPage:(currentPage: number)=>{
+        setCurrentPage: (currentPage: number) => {
             dispatch(setCurrentPageActionCreator(currentPage))
         },
-        setTotalUsersCount:(totalUsersCount:number)=>{
+        setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setTotalUsersCountActionCreator(totalUsersCount))
         }
     }
@@ -56,5 +56,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent)
 

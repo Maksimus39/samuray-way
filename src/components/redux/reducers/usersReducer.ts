@@ -28,7 +28,7 @@ const usersInitialState: UsersInitialStateType = {
     users: [],
     pageSize: 4,
     totalUsersCount: 0,
-    currentPage: 4
+    currentPage: 1
 }
 
 export const usersReducer = (state = usersInitialState, action: DispatchActionType): UsersInitialStateType => {
