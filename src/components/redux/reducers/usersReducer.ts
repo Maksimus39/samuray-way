@@ -21,6 +21,7 @@ export type UsersInitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 
@@ -28,7 +29,8 @@ const usersInitialState: UsersInitialStateType = {
     users: [],
     pageSize: 4,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true,
 }
 
 export const usersReducer = (state = usersInitialState, action: DispatchActionType): UsersInitialStateType => {
@@ -62,15 +64,25 @@ export const usersReducer = (state = usersInitialState, action: DispatchActionTy
                 ...state, currentPage: action.currentPage
             }
         }
-        case "SET_TOTAL_COUNT":{
+        case "SET_TOTAL_COUNT": {
             return {
-             ...state,totalUsersCount:action.totalUsersCount
+                ...state, totalUsersCount: action.totalUsersCount
+            }
+        }
+        case "TOGGLE_IS_FETCHING": {
+            return {
+                ...state, isFetching: action.isFetching
             }
         }
 
         default:
             return state
     }
+}
+
+export type ToggleIsFetchingActionType = {
+    type: "TOGGLE_IS_FETCHING",
+    isFetching: boolean
 }
 
 export type SetTotalUsersCountActionType = {
@@ -97,6 +109,10 @@ export type SetUsersActionType = {
     users: UsersDataType[]
 }
 
+export const toggleIsFetchingActionCreator = (isFetching: boolean): ToggleIsFetchingActionType => ({
+    type: "TOGGLE_IS_FETCHING" as const,
+    isFetching
+})
 
 export const followActionCreator = (usersID: number): FollowActionType => ({
     type: "FOLLOW" as const,

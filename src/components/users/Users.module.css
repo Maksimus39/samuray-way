@@ -19,8 +19,14 @@
     height: 100px;
 }
 
-.selectedPage{
-  display: flex;
+.selectedPage {
+    display: flex;
     font-weight: bold;
     gap: 14px;
+}
+
+.preLoader {
+    width: 90px;
+    height: 90px;
+    background-color: cadetblue;
 }

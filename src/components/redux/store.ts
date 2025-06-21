@@ -12,7 +12,7 @@ import {
 import {
     FollowActionType,
     SetCurrentPageActionType, SetTotalUsersCountActionType,
-    SetUsersActionType,
+    SetUsersActionType, ToggleIsFetchingActionType,
     UnFollowActionType
 } from "./reducers/usersReducer";
 
@@ -34,6 +34,7 @@ export type DispatchActionType = AddPostActionType
     | SetUsersActionType
     | SetCurrentPageActionType
     | SetTotalUsersCountActionType
+    | ToggleIsFetchingActionType
 
 const store: StoreType = {
     _state: {
