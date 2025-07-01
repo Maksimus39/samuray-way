@@ -33,10 +33,10 @@ export type UpdateNewMessagePostActionType = {
     newMessage: string
 }
 
-export const addMessageActionCreator = (): AddMessageActionType => ({
+export const addMessage = (): AddMessageActionType => ({
     type: "ADD_MESSAGE" as const
 })
-export const updateNewMessagePostActionCreator = (newMessage: string): UpdateNewMessagePostActionType => ({
+export const updateNewMessagePost = (newMessage: string): UpdateNewMessagePostActionType => ({
     type: "UPDATE_NEW_MESSAGE_POST" as const,
     newMessage
 })

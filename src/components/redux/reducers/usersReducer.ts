@@ -109,32 +109,32 @@ export type SetUsersActionType = {
     users: UsersDataType[]
 }
 
-export const toggleIsFetchingActionCreator = (isFetching: boolean): ToggleIsFetchingActionType => ({
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionType => ({
     type: "TOGGLE_IS_FETCHING" as const,
     isFetching
 })
 
-export const followActionCreator = (usersID: number): FollowActionType => ({
+export const follow = (usersID: number): FollowActionType => ({
     type: "FOLLOW" as const,
     usersID
 })
 
-export const unFollowActionCreator = (usersID: number): UnFollowActionType => ({
+export const unFollow = (usersID: number): UnFollowActionType => ({
     type: "UNFOLLOW" as const,
     usersID
 })
 
-export const setUsersActionCreator = (users: UsersDataType[]): SetUsersActionType => ({
+export const setUsers = (users: UsersDataType[]): SetUsersActionType => ({
     type: "SET_USERS" as const,
     users
 })
 
-export const setCurrentPageActionCreator = (currentPage: number): SetCurrentPageActionType => ({
+export const setCurrentPage = (currentPage: number): SetCurrentPageActionType => ({
     type: "SET_CURRENT_PAGE" as const,
     currentPage
 })
 
-export const setTotalUsersCountActionCreator = (totalUsersCount: number): SetTotalUsersCountActionType => ({
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountActionType => ({
     type: "SET_TOTAL_COUNT" as const,
     totalUsersCount
 })

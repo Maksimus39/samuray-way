@@ -1,13 +1,11 @@
 import {connect} from "react-redux";
 import {AppRootState} from "../../redux/reduxStore";
-import {Dispatch} from "redux";
 import {
-    followActionCreator,
-    setCurrentPageActionCreator,
-    setTotalUsersCountActionCreator,
-    setUsersActionCreator,
-    toggleIsFetchingActionCreator,
-    unFollowActionCreator,
+    follow, setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unFollow,
     UsersDataType
 } from "../../redux/reducers/usersReducer";
 import React from "react";
@@ -80,31 +78,15 @@ const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: (usersID: number) => {
-            dispatch(followActionCreator(usersID))
-        },
-        unFollow: (usersID: number) => {
-            dispatch(unFollowActionCreator(usersID))
-        },
-        setUsers: (users: UsersDataType[]) => {
-            dispatch(setUsersActionCreator(users))
-        },
-        setCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPageActionCreator(currentPage))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountActionCreator(totalUsersCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingActionCreator(isFetching))
-        },
-    }
-}
-
 export type UsersPropsType = MapStateToPropsType & MapDispatchPropsType
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching,
+})(UsersContainer)
 
